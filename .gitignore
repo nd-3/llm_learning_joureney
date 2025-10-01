@@ -1,0 +1,22 @@
+# --- Secrets ---
+# APIキーやパスワードを記載する.envファイルを無視する
+.env
+.env.*
+
+# --- Python ---
+# 仮想環境フォルダ
+.venv/
+venv/
+env/
+
+# Pythonキャッシュファイル
+__pycache__/
+*.pyc
+
+# --- IDE/Editor Settings ---
+# VSCodeの設定フォルダ
+.vscode/
+
+# --- OS Specific ---
+# macOS
+.DS_Store
