@@ -13,6 +13,9 @@ env/
 __pycache__/
 *.pyc
 
+# ChromaDBの永続化データ(生成物のためコミット不要)
+03_portfolio/techdoc-qa-bot/data/chroma_db/
+
 # --- IDE/Editor Settings ---
 # VSCodeの設定フォルダ
 .vscode/
