@@ -1,0 +1,177 @@
+[
+  {
+    "id": 1,
+    "type": "single",
+    "question": "Pythonを公開した人物と年を教えてください。",
+    "reference_answer": "Pythonは、Guido van Rossum氏によって1991年に公開されました。",
+    "expected_keywords": ["Guido van Rossum", "1991年"]
+  },
+  {
+    "id": 2,
+    "type": "single",
+    "question": "Pythonはどのような種類のプログラミング言語だと説明されていますか?",
+    "reference_answer": "Pythonは汎用プログラミング言語です。",
+    "expected_keywords": ["汎用", "プログラミング言語"]
+  },
+  {
+    "id": 3,
+    "type": "single",
+    "question": "Pythonの文法はどのような特徴を持つと説明されていますか?",
+    "reference_answer": "Pythonの文法はシンプルで読みやすく、初心者にも学びやすいと説明されています。",
+    "expected_keywords": ["シンプル", "読みやすい"]
+  },
+  {
+    "id": 4,
+    "type": "single",
+    "question": "Pythonはコードのブロック構造をどのように表現しますか?",
+    "reference_answer": "Pythonはコードのインデント(字下げ)によってブロック構造を表現します。",
+    "expected_keywords": ["インデント", "字下げ"]
+  },
+  {
+    "id": 5,
+    "type": "single",
+    "question": "Pythonはどのような種類の言語であり、そのことでどのようなことができますか?",
+    "reference_answer": "Pythonはインタプリタ言語であり、書いたコードをすぐに実行して結果を確認できます。",
+    "expected_keywords": ["インタプリタ言語", "すぐに実行"]
+  },
+  {
+    "id": 6,
+    "type": "single",
+    "question": "Pythonのコーディングルールにより、複数人が書いた場合でもどのような傾向があると説明されていますか?",
+    "reference_answer": "インデントによってブロック構造を表現するというルールにより、誰が書いても比較的統一感のある読みやすいコードになりやすいとされています。",
+    "expected_keywords": ["統一感", "読みやすい"]
+  },
+  {
+    "id": 7,
+    "type": "single",
+    "question": "Pythonの型付け方式と、それによって変数について何が不要になるかを教えてください。",
+    "reference_answer": "Pythonは動的型付け言語であり、変数の型を事前に宣言する必要がありません。",
+    "expected_keywords": ["動的型付け", "事前に宣言"]
+  },
+  {
+    "id": 8,
+    "type": "single",
+    "question": "資料内でPythonの用途としてどのような分野が挙げられていますか?",
+    "reference_answer": "Web開発、データ分析、機械学習、自動化スクリプトの作成などが用途として挙げられています。",
+    "expected_keywords": ["Web開発", "データ分析", "機械学習"]
+  },
+  {
+    "id": 9,
+    "type": "single",
+    "question": "Pythonで条件分岐を行うために使われる文は何ですか?",
+    "reference_answer": "if文が条件分岐に使われます。",
+    "expected_keywords": ["if文", "条件分岐"]
+  },
+  {
+    "id": 10,
+    "type": "single",
+    "question": "Pythonが多くの開発者に選ばれ続けている理由の一つとして何が挙げられていますか?",
+    "reference_answer": "豊富なライブラリ群と活発なコミュニティによって支えられている点が、多くの開発者に選ばれ続けている理由の一つとして挙げられています。",
+    "expected_keywords": ["ライブラリ", "コミュニティ"]
+  },
+  {
+    "id": 11,
+    "type": "single",
+    "question": "多くの言語ではブロック構造の表現に波括弧が使われますが、Pythonでは何が使われますか?",
+    "reference_answer": "Pythonでは波括弧ではなくインデントの深さによってブロック構造が表現されます。",
+    "expected_keywords": ["波括弧", "インデント"]
+  },
+  {
+    "id": 12,
+    "type": "single",
+    "question": "pipとは何ですか?",
+    "reference_answer": "pipはPythonの標準のパッケージ管理ツールです。",
+    "expected_keywords": ["pip", "パッケージ管理"]
+  },
+  {
+    "id": 13,
+    "type": "single",
+    "question": "数値計算のためのライブラリとして挙げられているのは何ですか?",
+    "reference_answer": "数値計算のライブラリとしてNumPyが挙げられています。",
+    "expected_keywords": ["NumPy", "数値計算"]
+  },
+  {
+    "id": 14,
+    "type": "single",
+    "question": "データ分析のためのライブラリとして挙げられているのは何ですか?",
+    "reference_answer": "データ分析のライブラリとしてpandasが挙げられています。",
+    "expected_keywords": ["pandas", "データ分析"]
+  },
+  {
+    "id": 15,
+    "type": "single",
+    "question": "Web開発向けのライブラリとして挙げられているものを教えてください。",
+    "reference_answer": "Web開発向けのライブラリとしてDjangoとFastAPIが挙げられています。",
+    "expected_keywords": ["Django", "FastAPI"]
+  },
+  {
+    "id": 16,
+    "type": "multi",
+    "question": "Pythonが「学習コストが低い」とされる背景には、文法とブロック構造の表現方法がどのように関係していますか?",
+    "reference_answer": "シンプルで読みやすい文法と、インデントによってブロック構造を表現するという設計によって、初心者にも学びやすく学習コストが低いとされています。",
+    "expected_keywords": ["シンプル", "インデント", "学習コスト"]
+  },
+  {
+    "id": 17,
+    "type": "multi",
+    "question": "Pythonのコードが「誰が書いても読みやすい」とされる理由を、インデントのルールと基本文法の設計の両面から説明してください。",
+    "reference_answer": "インデントによってブロック構造を表現するというルールにより誰が書いても統一感のあるコードになりやすく、さらにコードの見た目とプログラムの構造が一致するため可読性の高いコードになります。",
+    "expected_keywords": ["インデント", "統一感", "可読性"]
+  },
+  {
+    "id": 18,
+    "type": "multi",
+    "question": "Pythonが幅広い分野で活用されている理由を、型付けの方式とライブラリ・コミュニティの両面から説明してください。",
+    "reference_answer": "動的型付け言語であることによる学習コストの低さに加え、pipで簡単に利用できる豊富なライブラリ群と活発なコミュニティに支えられている点が、幅広い分野での活用につながっています。",
+    "expected_keywords": ["動的型付け", "ライブラリ", "コミュニティ"]
+  },
+  {
+    "id": 19,
+    "type": "multi",
+    "question": "Web開発に関連する記述を、Pythonの用途とエコシステムの両方の観点から挙げてください。",
+    "reference_answer": "特徴と用途の説明ではWeb開発がPythonの用途の一つとして挙げられており、エコシステムの説明ではWeb開発向けライブラリとしてDjangoとFastAPIが紹介されています。",
+    "expected_keywords": ["Web開発", "Django", "FastAPI"]
+  },
+  {
+    "id": 20,
+    "type": "multi",
+    "question": "Pythonが「初心者にも学びやすい」ことと「多くの開発者に選ばれ続けている」ことは、それぞれどのような理由によるものですか?",
+    "reference_answer": "シンプルで読みやすい文法により初心者にも学びやすい言語である一方、豊富なライブラリ群と活発なコミュニティによって支えられている点が、多くの開発者に選ばれ続けている理由の一つとされています。",
+    "expected_keywords": ["シンプルな文法", "ライブラリ", "コミュニティ"]
+  },
+  {
+    "id": 21,
+    "type": "not_in_doc",
+    "question": "Python 2とPython 3の違いは何ですか?",
+    "reference_answer": "資料にはPython 2とPython 3の違いについての記載がありません。",
+    "expected_keywords": []
+  },
+  {
+    "id": 22,
+    "type": "not_in_doc",
+    "question": "Pythonの現在の最新バージョンは何ですか?",
+    "reference_answer": "資料にはPythonの最新バージョンについての記載がありません。",
+    "expected_keywords": []
+  },
+  {
+    "id": 23,
+    "type": "not_in_doc",
+    "question": "Pythonの実行速度は他のプログラミング言語と比べてどうですか?",
+    "reference_answer": "資料にはPythonの実行速度に関する記載がありません。",
+    "expected_keywords": []
+  },
+  {
+    "id": 24,
+    "type": "not_in_doc",
+    "question": "Pythonで仮想環境(venv)を作成するコマンドは何ですか?",
+    "reference_answer": "資料には仮想環境の作成方法についての記載がありません。",
+    "expected_keywords": []
+  },
+  {
+    "id": 25,
+    "type": "not_in_doc",
+    "question": "Pythonはオブジェクト指向プログラミングに対応していますか?",
+    "reference_answer": "資料にはオブジェクト指向プログラミングへの対応についての記載がありません。",
+    "expected_keywords": []
+  }
+]
