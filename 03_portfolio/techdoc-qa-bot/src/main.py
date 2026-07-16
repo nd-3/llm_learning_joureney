@@ -27,6 +27,9 @@ CHUNK_OVERLAP = 200
 # 検索時に取得する関連チャンク数
 RETRIEVE_TOP_K = 4
 
+# 埋め込みモデル(OpenAIEmbeddingsのデフォルトと同じ値を明示している)
+EMBEDDING_MODEL = "text-embedding-ada-002"
+
 # 使用するLLMモデル(切り替え可能: 例 "claude-opus-4-8" など)
 CLAUDE_MODEL = "claude-haiku-4-5"
 
@@ -48,18 +51,26 @@ def load_api_keys() -> None:
         sys.exit("エラー: OPENAI_API_KEYが.envに設定されていません。")
 
 
-def build_vector_store(pdf_path: str) -> Chroma:
-    """PDFを読み込み、チャンク分割してベクトル化し、ChromaDBに永続化する。
+def build_vector_store(
+    pdf_path: str,
+    persist_dir: str = CHROMA_DB_DIR,
+    embedding_model: str = EMBEDDING_MODEL,
+    chunk_size: int = CHUNK_SIZE,
+    chunk_overlap: int = CHUNK_OVERLAP,
+) -> Chroma:
+    """PDFを読み込み、チャンク分割してベクトル化し、persist_dirにChromaDBとして永続化する。
 
-    既にDBが永続化済みの場合は、再読み込み・再ベクトル化を行わず
+    既にpersist_dirが存在する場合は、再読み込み・再ベクトル化を行わず
     既存のDBを再利用する(APIコストと処理時間の節約のため)。
+    persist_dir・embedding_model・chunk_size・chunk_overlapを引数化しているのは、
+    評価スクリプト(evals/run_eval.py)から異なる設定で呼び出せるようにするため。
     """
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(model=embedding_model)
 
-    if os.path.exists(CHROMA_DB_DIR):
-        print(f"既存のベクトルDBを再利用します: {CHROMA_DB_DIR}")
+    if os.path.exists(persist_dir):
+        print(f"既存のベクトルDBを再利用します: {persist_dir}")
         return Chroma(
-            persist_directory=CHROMA_DB_DIR,
+            persist_directory=persist_dir,
             embedding_function=embeddings,
         )
 
@@ -69,8 +80,8 @@ def build_vector_store(pdf_path: str) -> Chroma:
 
     print("テキストをチャンク分割中...")
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=CHUNK_SIZE,
-        chunk_overlap=CHUNK_OVERLAP,
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
     )
     chunks = splitter.split_documents(documents)
     print(f"{len(chunks)}個のチャンクに分割しました。")
@@ -79,9 +90,9 @@ def build_vector_store(pdf_path: str) -> Chroma:
     vector_store = Chroma.from_documents(
         documents=chunks,
         embedding=embeddings,
-        persist_directory=CHROMA_DB_DIR,
+        persist_directory=persist_dir,
     )
-    print(f"ベクトルDBを永続化しました: {CHROMA_DB_DIR}")
+    print(f"ベクトルDBを永続化しました: {persist_dir}")
 
     return vector_store
 
@@ -110,15 +121,23 @@ def build_prompt(question: str, context_chunks: list[str]) -> list:
     ]
 
 
-def answer_question(vector_store: Chroma, llm: ChatAnthropic, question: str) -> str:
-    """質問に関連するチャンクを検索し、LLMに回答を生成させる。"""
-    relevant_docs = vector_store.similarity_search(question, k=RETRIEVE_TOP_K)
-    context_chunks = [doc.page_content for doc in relevant_docs]
+def retrieve_relevant_chunks(vector_store: Chroma, question: str, k: int = RETRIEVE_TOP_K) -> list[str]:
+    """質問に関連するチャンクをベクトルDBから検索する。"""
+    relevant_docs = vector_store.similarity_search(question, k=k)
+    return [doc.page_content for doc in relevant_docs]
 
+
+def generate_answer(llm: ChatAnthropic, question: str, context_chunks: list[str]) -> str:
+    """検索済みのチャンクを文脈として、LLMに回答を生成させる。"""
     messages = build_prompt(question, context_chunks)
     response = llm.invoke(messages)
-
     return response.content
+
+
+def answer_question(vector_store: Chroma, llm: ChatAnthropic, question: str, k: int = RETRIEVE_TOP_K) -> str:
+    """質問に関連するチャンクを検索し、LLMに回答を生成させる(検索+生成のラッパー)。"""
+    context_chunks = retrieve_relevant_chunks(vector_store, question, k=k)
+    return generate_answer(llm, question, context_chunks)
 
 
 def run_qa_loop(vector_store: Chroma) -> None:

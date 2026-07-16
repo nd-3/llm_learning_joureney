@@ -18,6 +18,9 @@ __pycache__/
 # ChromaDBの永続化データ(生成物のためコミット不要)
 03_portfolio/techdoc-qa-bot/data/chroma_db/
 
+# 評価用ベクトルDB(設定ごとに評価実行時に生成される)
+03_portfolio/techdoc-qa-bot/evals/db/
+
 # --- IDE/Editor Settings ---
 # VSCodeの設定フォルダ
 .vscode/
