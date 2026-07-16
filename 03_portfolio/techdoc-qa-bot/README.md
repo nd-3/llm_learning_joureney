@@ -118,6 +118,10 @@ cp .env.example .env
 python src/main.py data/sample.pdf
 ```
 
+## 評価用文書の入手
+
+RAG精度評価(`evals/`)では、`data/sample.pdf` に加えて京都大学が公開している「プログラミング演習 Python 2023」(260ページ)も評価対象文書として使用します。入手元: https://repository.kulib.kyoto-u.ac.jp/dspace/handle/2433/285599 。このページからPDFをダウンロードし、`data/kyodai_python_2023.pdf` に配置してください。公開物の再配布を避けるため、このPDF自体はリポジトリにコミットしていません(`.gitignore`で除外)。
+
 ## ロードマップ
 
 - [x] RAGパイプラインのMVP実装(単一PDF・コンソール対話)

@@ -65,7 +65,8 @@ def parse_args() -> argparse.Namespace:
         help=f"検索時に取得する上位チャンク数(デフォルト: {rag.RETRIEVE_TOP_K})",
     )
     parser.add_argument(
-        "--pdf-path",
+        "--pdf",
+        dest="pdf_path",
         default=DEFAULT_PDF_PATH,
         help=f"評価対象のPDFファイルパス(デフォルト: {DEFAULT_PDF_PATH})",
     )
@@ -88,10 +89,35 @@ def load_dataset(path: str) -> list[dict]:
         return json.load(f)
 
 
+# qa_dataset*.json の expected_keywords は、単純な部分文字列一致による
+# 活用形・語順のズレを避けるため、以下のルールで記述する:
+#   1. 名詞または語幹で書く(例:「読みやすい」ではなく「読みやす」と書き、
+#      「読みやすい」「読みやすく」「読みやすかった」などの活用をまとめて拾う)
+#   2. 複合フレーズは単語単位に分割して複数キーワードにする
+#      (例:「シンプルな文法」ではなく「シンプル」と「文法」の2キーワードにする)
+# この関数自体は単純な部分文字列一致(contains)のみを行い、形態素解析などは
+# 行わない。キーワード側を上記ルールで書くことで、シンプルな実装のまま
+# 活用形・語順による誤判定を減らす設計としている。
+#
+# また、比較前に半角・全角スペースや改行などの空白文字をすべて除去して
+# 正規化する。これはpypdfのPDFテキスト抽出が、両端揃え(ジャスティファイ)
+# されたレイアウトの都合で、半角文字(数字・アルファベット)と日本語文字の
+# 間に不要な半角スペースを挿入してしまう癖への対策である
+# (例:「1989年」が本文からは「1989 年」として抽出される)。
+# この空白は意味を持たないレイアウト上のノイズであり、キーワード側にも
+# チャンク本文側にも一律に発生しうるため、双方から除去してから比較する。
+_WHITESPACE_RE = re.compile(r"\s+")
+
+
+def _normalize_for_match(text: str) -> str:
+    """空白文字(半角・全角・改行)をすべて除去し、大文字小文字を無視した形に正規化する。"""
+    return _WHITESPACE_RE.sub("", text).lower()
+
+
 def contains_all_keywords(text: str, keywords: list[str]) -> bool:
-    """textに、keywordsの全てが(大文字小文字を無視して)部分文字列として含まれるか判定する。"""
-    normalized = text.lower()
-    return all(keyword.lower() in normalized for keyword in keywords)
+    """textに、keywordsの全てが(空白の有無・大文字小文字を無視して)部分文字列として含まれるか判定する。"""
+    normalized = _normalize_for_match(text)
+    return all(_normalize_for_match(keyword) in normalized for keyword in keywords)
 
 
 def is_not_in_doc_answer(text: str) -> bool:
@@ -220,7 +246,12 @@ def main() -> None:
 
     dataset = load_dataset(args.dataset)
 
-    db_dirname = f"{sanitize_for_filename(args.embedding_model)}_{args.chunk_size}"
+    # ディレクトリ名にPDFファイル名も含める。埋め込みモデル・チャンクサイズが
+    # 同じでも評価対象のPDFが異なればベクトルの中身は別物になるため、
+    # PDFを区別せずディレクトリを共有すると、異なる文書で評価したはずが
+    # 古いPDFのベクトルDBを誤って再利用してしまう(実際に発生した不具合)。
+    pdf_stem = os.path.splitext(os.path.basename(args.pdf_path))[0]
+    db_dirname = f"{sanitize_for_filename(pdf_stem)}_{sanitize_for_filename(args.embedding_model)}_{args.chunk_size}"
     persist_dir = os.path.join(DB_ROOT_DIR, db_dirname)
 
     print(f"設定: embedding_model={args.embedding_model}, chunk_size={args.chunk_size}, top_k={args.top_k}")

@@ -1,0 +1,177 @@
+[
+  {
+    "id": 1,
+    "type": "single",
+    "question": "Pythonの実装は誰によって、いつ始まりましたか?",
+    "reference_answer": "Pythonの実装は、1989年にGuido van Rossumにより始まりました。",
+    "expected_keywords": ["Guido van Rossum", "1989年"]
+  },
+  {
+    "id": 2,
+    "type": "single",
+    "question": "Python Version 3はVersion 2と上位互換ですか?",
+    "reference_answer": "Python の Version 3 は Version 2 と上位互換ではありません。",
+    "expected_keywords": ["Version 3", "上位互換"]
+  },
+  {
+    "id": 3,
+    "type": "single",
+    "question": "プログラミング言語の処理系の構成方式のうち、PythonやJavaが採用しているのは何ですか?",
+    "reference_answer": "PythonやJavaは、コンパイラ方式とインタープリタ方式の中間的な方法である中間コード方式を採用しています。",
+    "expected_keywords": ["中間コード方式", "Java"]
+  },
+  {
+    "id": 4,
+    "type": "single",
+    "question": "本書の授業ではどの配布パッケージの利用を想定していますか?",
+    "reference_answer": "本書では、CPythonに科学計算用のモジュールなどを一括したパッケージであるAnacondaの利用を想定しています。",
+    "expected_keywords": ["Anaconda", "科学計算"]
+  },
+  {
+    "id": 5,
+    "type": "single",
+    "question": "近年Pythonが人気を集めている理由として何が挙げられていますか?",
+    "reference_answer": "近年のデータ科学や人工知能(機械学習)技術への関心から、この面でのライブラリが豊富なPythonが人気を集めています。",
+    "expected_keywords": ["データ科学", "人工知能", "ライブラリ"]
+  },
+  {
+    "id": 6,
+    "type": "single",
+    "question": "変数の命名ルールで、先頭に使ってはいけないものは何ですか?",
+    "reference_answer": "変数名の先頭に数字を使ってはいけません。",
+    "expected_keywords": ["数字", "先頭"]
+  },
+  {
+    "id": 7,
+    "type": "single",
+    "question": "リストの要素は何番目からアクセスできますか?",
+    "reference_answer": "リストの要素は0番目からアクセスします。先頭の要素は1番目ではなく0番目です。",
+    "expected_keywords": ["0番目", "先頭"]
+  },
+  {
+    "id": 8,
+    "type": "single",
+    "question": "for文の繰り返しから脱出する命令は何ですか?",
+    "reference_answer": "for文の繰り返しから脱出するにはbreak命令を使います。",
+    "expected_keywords": ["break", "脱出"]
+  },
+  {
+    "id": 9,
+    "type": "single",
+    "question": "Pythonのプログラムでブロックはどのように表記しますか?",
+    "reference_answer": "Pythonではブロックを同じ深さの字下げ(インデント)で表記します。",
+    "expected_keywords": ["字下げ", "深さ"]
+  },
+  {
+    "id": 10,
+    "type": "single",
+    "question": "クラスの__init__メソッドはどのようなタイミングで呼ばれますか?",
+    "reference_answer": "__init__()は、クラスのオブジェクトが生成される際に必ず実行されるメソッドです。",
+    "expected_keywords": ["オブジェクト", "生成"]
+  },
+  {
+    "id": 11,
+    "type": "single",
+    "question": "Pythonでファイルを開くために使う組み込み関数は何ですか?",
+    "reference_answer": "ファイルを開くにはopen関数を使います。openは組み込み関数です。",
+    "expected_keywords": ["open", "組み込み関数"]
+  },
+  {
+    "id": 12,
+    "type": "single",
+    "question": "NumPyがPython自体より高速に演算できる理由は何ですか?",
+    "reference_answer": "NumPyの内部はC言語で実装されているため、ベクトルや行列などの演算が高速に実行できます。",
+    "expected_keywords": ["C言語", "高速"]
+  },
+  {
+    "id": 13,
+    "type": "single",
+    "question": "pandasの2次元のデータ形式は何と呼ばれますか?",
+    "reference_answer": "pandasの2次元のデータ形式はDataFrameと呼ばれます。",
+    "expected_keywords": ["DataFrame", "2次元"]
+  },
+  {
+    "id": 14,
+    "type": "single",
+    "question": "Matplotlibで日本語の文字を表示するには何を設定する必要がありますか?",
+    "reference_answer": "Matplotlibの標準フォントは日本語文字を持たないため、日本語を表示するにはフォント(例: Yu Gothic)を設定する必要があります。",
+    "expected_keywords": ["フォント", "日本語"]
+  },
+  {
+    "id": 15,
+    "type": "single",
+    "question": "本書で学習環境として使われた統合環境は何ですか?",
+    "reference_answer": "本書では、初学者にとっての利用しやすさから構成の単純なIDLEをPythonの統合利用環境として用いました。",
+    "expected_keywords": ["IDLE", "統合"]
+  },
+  {
+    "id": 16,
+    "type": "multi",
+    "question": "Pythonが採用している処理系の方式と、その方式が実行速度にどう関係するかを説明してください。",
+    "reference_answer": "Pythonは中間コード方式を採用しており、ソースコードを中間コードにコンパイルしたうえでインタープリタ方式で実行します。この方式のため、Pythonはプログラミング言語の中では処理が遅いとされています。",
+    "expected_keywords": ["中間コード方式", "インタープリタ方式", "遅"]
+  },
+  {
+    "id": 17,
+    "type": "multi",
+    "question": "リストの代入(b = a)における注意点と、Pythonにおける変数の仕組みがどのように関連しているか説明してください。",
+    "reference_answer": "Pythonの変数はデータそのものではなく「データの所在」を持つため、b = a のようにリストを代入すると、bとaは同じリストの実体を指すことになり、一方の要素を変更すると他方にも影響します。",
+    "expected_keywords": ["データの所在", "実体"]
+  },
+  {
+    "id": 18,
+    "type": "multi",
+    "question": "for文とwhile文による繰り返し処理は、それぞれどのような条件で繰り返しを行いますか?",
+    "reference_answer": "for文はrange()関数などで指定された繰り返しの範囲の各値について処理を繰り返すのに対し、while文は条件式が成立している間、実行ブロックの処理を繰り返します。",
+    "expected_keywords": ["range", "条件式"]
+  },
+  {
+    "id": 19,
+    "type": "multi",
+    "question": "関数のローカル変数とクラスのインスタンス変数は、それぞれどのように扱われますか?",
+    "reference_answer": "関数内で定義されたローカル変数は関数の実行が終了すると失われるのに対し、self.を付けて宣言するインスタンス変数はそのオブジェクトが使われている間、値を保持し続けます。",
+    "expected_keywords": ["ローカル変数", "self", "保持"]
+  },
+  {
+    "id": 20,
+    "type": "multi",
+    "question": "Pythonが多様な応用が可能とされる理由を、言語自体の特徴と学術利用のためのライブラリの両方の観点から説明してください。",
+    "reference_answer": "Pythonは初心者にも学びやすく高度なプログラミングも可能という特徴に加え、NumPyやpandasなど科学計算のライブラリが多くの人により開発されていることから、多様な応用が可能とされています。",
+    "expected_keywords": ["学びやす", "NumPy", "pandas"]
+  },
+  {
+    "id": 21,
+    "type": "not_in_doc",
+    "question": "Pythonでの仮想環境(venv)の作成コマンドは何ですか?",
+    "reference_answer": "資料には仮想環境(venv)の作成コマンドについての記載がありません。",
+    "expected_keywords": []
+  },
+  {
+    "id": 22,
+    "type": "not_in_doc",
+    "question": "Pythonのデコレータ(decorator)の使い方はどのようなものですか?",
+    "reference_answer": "資料にはデコレータの使い方についての記載がありません。",
+    "expected_keywords": []
+  },
+  {
+    "id": 23,
+    "type": "not_in_doc",
+    "question": "Pythonの型ヒント(type hints)はどのように記述しますか?",
+    "reference_answer": "資料には型ヒントの記述方法についての記載がありません。",
+    "expected_keywords": []
+  },
+  {
+    "id": 24,
+    "type": "not_in_doc",
+    "question": "Pythonのasync/awaitによる非同期処理はどのように書きますか?",
+    "reference_answer": "資料にはasync/awaitによる非同期処理についての記載がありません。",
+    "expected_keywords": []
+  },
+  {
+    "id": 25,
+    "type": "not_in_doc",
+    "question": "Gitを使ったバージョン管理の方法について教えてください。",
+    "reference_answer": "資料にはGitを使ったバージョン管理についての記載がありません。",
+    "expected_keywords": []
+  }
+]

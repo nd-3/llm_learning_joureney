@@ -21,6 +21,9 @@ __pycache__/
 # 評価用ベクトルDB(設定ごとに評価実行時に生成される)
 03_portfolio/techdoc-qa-bot/evals/db/
 
+# 評価用に外部から取得した公開PDF(再配布を避けるためコミットしない。入手元はREADME参照)
+03_portfolio/techdoc-qa-bot/data/kyodai_python_2023.pdf
+
 # --- IDE/Editor Settings ---
 # VSCodeの設定フォルダ
 .vscode/
