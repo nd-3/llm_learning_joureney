@@ -15,8 +15,10 @@ env/
 __pycache__/
 *.pyc
 
-# ChromaDBの永続化データ(生成物のためコミット不要)
-03_portfolio/techdoc-qa-bot/data/chroma_db/
+# ChromaDBの永続化データ(生成物のためコミット不要)。
+# ディレクトリ名に埋め込みモデル名が付く(例: chroma_db_text-embedding-3-small)ため
+# ワイルドカードで指定する。
+03_portfolio/techdoc-qa-bot/data/chroma_db*/
 
 # 評価用ベクトルDB(設定ごとに評価実行時に生成される)
 03_portfolio/techdoc-qa-bot/evals/db/

@@ -16,9 +16,7 @@ from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-# ChromaDBの永続化先ディレクトリ(このファイルから見て ../data/chroma_db)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-CHROMA_DB_DIR = os.path.join(BASE_DIR, "data", "chroma_db")
 
 # チャンク分割の設定
 CHUNK_SIZE = 1000
@@ -27,11 +25,21 @@ CHUNK_OVERLAP = 200
 # 検索時に取得する関連チャンク数
 RETRIEVE_TOP_K = 4
 
-# 埋め込みモデル(OpenAIEmbeddingsのデフォルトと同じ値を明示している)
-EMBEDDING_MODEL = "text-embedding-ada-002"
+# 埋め込みモデル。評価に基づき選定(詳細は docs/evaluation.md)。
+# text-embedding-3-small は同条件の比較で text-embedding-ada-002 を
+# 全指標で上回り、料金もada-002より安いため採用している。
+EMBEDDING_MODEL = "text-embedding-3-small"
 
 # 使用するLLMモデル(切り替え可能: 例 "claude-opus-4-8" など)
 CLAUDE_MODEL = "claude-haiku-4-5"
+
+# ChromaDBの永続化先ディレクトリ(このファイルから見て ../data/chroma_db_{embedding_model})。
+# ディレクトリ名に埋め込みモデル名を含めているのは、異なる埋め込みモデルの
+# ベクトルを同じDBに混在させないため(evals/run_eval.pyと同じ設計)。
+# 例えばdata/chroma_dbのようにモデル名を含まない固定名にすると、
+# EMBEDDING_MODELを変更した際に古いモデルのベクトルが入ったDBを誤って
+# 再利用してしまい、検索が壊れる(実際に発生した不具合と同種のもの)。
+CHROMA_DB_DIR = os.path.join(BASE_DIR, "data", f"chroma_db_{EMBEDDING_MODEL}")
 
 
 def parse_args() -> argparse.Namespace:

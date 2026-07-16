@@ -24,8 +24,8 @@
     "id": 4,
     "type": "single",
     "question": "本書の授業ではどの配布パッケージの利用を想定していますか?",
-    "reference_answer": "本書では、CPythonに科学計算用のモジュールなどを一括したパッケージであるAnacondaの利用を想定しています。",
-    "expected_keywords": ["Anaconda", "科学計算"]
+    "reference_answer": "本書の授業では、Pythonの配布パッケージとしてAnacondaの利用を想定しています。",
+    "expected_keywords": ["Anaconda", "パッケージ"]
   },
   {
     "id": 5,
