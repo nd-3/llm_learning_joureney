@@ -1,0 +1,47 @@
+# スキルプロファイルのテンプレート(ダミー値)。
+# 実データは skill_profile.yaml にコピーして記入する(.gitignoreでコミット対象外)。
+
+name: "山田太郎"
+summary: "組込みソフトウェアエンジニア。C言語での機器制御開発を中心に、近年はPythonでのツール開発・LLMを使った個人開発の学習を進めている。"
+
+experience_years: 5
+
+skills:
+  - name: "C言語"
+    level: "expert"
+    years: 5
+    note: "マイコン向け組込みソフトウェアの開発・保守"
+  - name: "Python"
+    level: "intermediate"
+    years: 1
+    note: "個人開発でのツール・LLMアプリケーション作成"
+  - name: "Git"
+    level: "intermediate"
+    years: 3
+  - name: "LangChain"
+    level: "beginner"
+    years: 0.5
+  - name: "FastAPI"
+    level: "beginner"
+    years: 0.5
+
+roles:
+  - title: "組込みソフトウェアエンジニア"
+    years: 5
+    description: "産業機器向け制御ソフトウェアの設計・実装・デバッグ"
+
+education:
+  - degree: "学士(工学)"
+    field: "電気電子工学"
+
+certifications: []
+
+preferences:
+  desired_direction: "AI/LLMを活用したバックエンド開発に軸足を移し、将来的にはLLMアプリケーションの設計を主導できるようになりたい"
+  avoided_direction: "フロントエンド専任のポジション、運用保守のみで新規開発を伴わない業務"
+  valued_conditions:
+    - "リモートワーク可"
+    - "技術選定への裁量がある"
+    - "学習・自己研鑽の時間が確保できる"
+  remote_work: "可"
+  relocation: "不可"

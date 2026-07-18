@@ -26,6 +26,10 @@ __pycache__/
 # 評価用に外部から取得した公開PDF(再配布を避けるためコミットしない。入手元はREADME参照)
 03_portfolio/techdoc-qa-bot/data/kyodai_python_2023.pdf
 
+# skill-match-analyzer: 実データのスキルプロファイル(個人情報のためコミット不要)。
+# テンプレートは skill_profile.example.yaml としてコミット対象にする。
+03_portfolio/skill-match-analyzer/skill_profile.yaml
+
 # --- IDE/Editor Settings ---
 # VSCodeの設定フォルダ
 .vscode/
