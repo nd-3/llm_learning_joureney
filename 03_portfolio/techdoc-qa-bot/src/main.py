@@ -40,7 +40,12 @@ CLAUDE_MODEL = "claude-haiku-4-5"
 # 例えばdata/chroma_dbのようにモデル名を含まない固定名にすると、
 # EMBEDDING_MODELを変更した際に古いモデルのベクトルが入ったDBを誤って
 # 再利用してしまい、検索が壊れる(実際に発生した不具合と同種のもの)。
-CHROMA_DB_DIR = os.path.join(BASE_DIR, "data", f"chroma_db_{EMBEDDING_MODEL}")
+def build_chroma_db_dir(base_dir: str, embedding_model: str) -> str:
+    """埋め込みモデルごとのChromaDB永続化ディレクトリパスを組み立てる。"""
+    return os.path.join(base_dir, "data", f"chroma_db_{embedding_model}")
+
+
+CHROMA_DB_DIR = build_chroma_db_dir(BASE_DIR, EMBEDDING_MODEL)
 
 
 def parse_args() -> argparse.Namespace:

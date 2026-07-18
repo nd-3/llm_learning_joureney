@@ -83,6 +83,19 @@ def sanitize_for_filename(value: str) -> str:
     return re.sub(r"[^\w.-]", "_", value)
 
 
+def build_db_dirname(pdf_path: str, embedding_model: str, chunk_size: int) -> str:
+    """評価用ベクトルDBの永続化ディレクトリ名を組み立てる。
+
+    ディレクトリ名にPDFファイル名も含めるのは、埋め込みモデル・チャンクサイズが
+    同じでも評価対象のPDFが異なればベクトルの中身は別物になるため。PDFを区別せず
+    ディレクトリを共有すると、異なる文書で評価したはずが古いPDFのベクトルDBを
+    誤って再利用してしまう(実際に発生した不具合。tests/test_db_naming.py で
+    再発を防止している)。
+    """
+    pdf_stem = os.path.splitext(os.path.basename(pdf_path))[0]
+    return f"{sanitize_for_filename(pdf_stem)}_{sanitize_for_filename(embedding_model)}_{chunk_size}"
+
+
 def load_dataset(path: str) -> list[dict]:
     """QAデータセットのJSONを読み込む。"""
     with open(path, encoding="utf-8") as f:
@@ -246,12 +259,7 @@ def main() -> None:
 
     dataset = load_dataset(args.dataset)
 
-    # ディレクトリ名にPDFファイル名も含める。埋め込みモデル・チャンクサイズが
-    # 同じでも評価対象のPDFが異なればベクトルの中身は別物になるため、
-    # PDFを区別せずディレクトリを共有すると、異なる文書で評価したはずが
-    # 古いPDFのベクトルDBを誤って再利用してしまう(実際に発生した不具合)。
-    pdf_stem = os.path.splitext(os.path.basename(args.pdf_path))[0]
-    db_dirname = f"{sanitize_for_filename(pdf_stem)}_{sanitize_for_filename(args.embedding_model)}_{args.chunk_size}"
+    db_dirname = build_db_dirname(args.pdf_path, args.embedding_model, args.chunk_size)
     persist_dir = os.path.join(DB_ROOT_DIR, db_dirname)
 
     print(f"設定: embedding_model={args.embedding_model}, chunk_size={args.chunk_size}, top_k={args.top_k}")
