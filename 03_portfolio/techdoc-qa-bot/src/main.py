@@ -22,8 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 200
 
-# 検索時に取得する関連チャンク数
-RETRIEVE_TOP_K = 4
+# 検索時に取得する関連チャンク数。
+# ID19の原因診断と実験に基づき選定(詳細: evals/notes/id19_analysis.md、docs/evaluation.md)。
+RETRIEVE_TOP_K = 8
 
 # 埋め込みモデル。評価に基づき選定(詳細は docs/evaluation.md)。
 # text-embedding-3-small は同条件の比較で text-embedding-ada-002 を
