@@ -37,11 +37,11 @@ education:
 certifications: []
 
 preferences:
-  desired_direction: "AI/LLMを活用したバックエンド開発に軸足を移し、将来的にはLLMアプリケーションの設計を主導できるようになりたい"
-  avoided_direction: "フロントエンド専任のポジション、運用保守のみで新規開発を伴わない業務"
+  desired_direction: "AI/LLMを活用したソフトウェア開発に軸足を移し、RAGやLLMアプリケーションの設計・評価を専門にしていきたい"
+  avoided_direction: "組込みファームウェア専業(C/C++のみ)の案件に戻ること。AI/LLMに関わらない業務"
   valued_conditions:
+    - "LLM/AI関連の技術に日常的に触れられること"
     - "リモートワーク可"
     - "技術選定への裁量がある"
-    - "学習・自己研鑽の時間が確保できる"
   remote_work: "可"
   relocation: "不可"
