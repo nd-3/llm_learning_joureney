@@ -30,6 +30,10 @@ __pycache__/
 # テンプレートは skill_profile.example.yaml としてコミット対象にする。
 03_portfolio/skill-match-analyzer/skill_profile.yaml
 
+# --- Private ---
+# 転職ドラフト等のレジュメ下書き置き場。非公開のため丸ごとコミット対象外にする。
+career-drafts/
+
 # --- IDE/Editor Settings ---
 # VSCodeの設定フォルダ
 .vscode/
